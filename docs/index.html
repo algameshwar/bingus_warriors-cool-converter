@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f8ff">
+  <meta name="description" content="bingus_warriors cool converter — private, on-device tools for video, audio, images, PDFs and documents.">
+  <title>bingus_warriors cool converter — Still</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    const REPO_OWNER = "algameshwar";
+    const REPO_NAME = "bingus_warriors-cool-converter";
+    const release = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/latest/download/`;
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("[data-release]").forEach(link => { link.href = release + link.dataset.release; });
+      document.querySelectorAll("[data-repo]").forEach(link => { link.href = `https://github.com/${REPO_OWNER}/${REPO_NAME}`; });
+    });
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Still home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 14v4m6-8v12m7-19v26m7-20v14m6-9v4"/></svg><span>Still</span>
+    </a>
+    <a class="top-link" data-repo href="#top">View on GitHub <span aria-hidden="true">↗</span></a>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>bingus_warriors<br>cool converter</h1>
+        <p class="lead">Your everyday file toolbox. Convert, compress and tidy files on your own device.</p>
+        <div class="actions">
+          <a class="button button-primary" data-release="Still-Toolbox-Windows-v3.zip" href="#downloads">Get the Windows app <span aria-hidden="true">↓</span></a>
+          <a class="button button-quiet" data-release="Still-Android.apk" href="#downloads">Get the Android app <span aria-hidden="true">↓</span></a>
+        </div>
+        <p class="privacy"><span class="dot"></span> Your files stay on your device during conversion.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="file-sheet sheet-back"><span class="mini-line"></span><span class="mini-line short"></span></div>
+        <div class="file-sheet sheet-main"><div class="sheet-mark"><svg viewBox="0 0 32 32"><path d="M3 14v4m6-8v12m7-19v26m7-20v14m6-9v4"/></svg></div><span class="sheet-label">Your files</span><span class="sheet-line"></span><span class="sheet-line mid"></span><span class="sheet-line short"></span><div class="sheet-chip">Ready to save <span>✓</span></div></div>
+        <div class="float-badge badge-video"><span>▶</span> MP4</div><div class="float-badge badge-doc">PDF <span>↗</span></div>
+      </div>
+    </section>
+    <section class="formats" aria-label="Supported file tasks"><p>One simple place for everyday file jobs</p><div><span>Video compression</span><i></i><span>Audio conversion</span><i></i><span>Images</span><i></i><span>PDF &amp; Office</span><i></i><span>ZIP &amp; data</span></div></section>
+    <section class="compressor">
+      <div class="compressor-copy"><p class="section-kicker">Make room, keep what matters</p><h2>Send a smaller video.<br>Choose the size.</h2><p>Pick a target such as 30 MB, or enter your own size. Still adjusts the video and checks the finished file against your target.</p><div class="size-row"><span>10 MB</span><span>20 MB</span><strong>30 MB</strong><span>Custom</span></div></div>
+      <div class="preview-card" aria-label="Illustration of video compression settings"><div class="preview-head"><span>Compress video</span><span class="tiny-dots">•••</span></div><div class="preview-file"><div class="play-icon">▶</div><div><strong>weekend-video.mp4</strong><small>Original · 186 MB</small></div><span class="file-type">MP4</span></div><div class="target-label"><span>Target size</span><strong>30 MB</strong></div><div class="slider"><span></span></div><div class="slider-captions"><span>Smaller file</span><span>Higher quality</span></div><div class="ready"><span class="ready-check">✓</span><span><strong>Ready to save</strong><small>27.8 MB · under your target</small></span><span class="download-arrow">↓</span></div></div>
+    </section>
+    <section class="toolset">
+      <div class="section-head"><div><p class="section-kicker">More than video</p><h2>Small jobs, all together.</h2></div><p>Open Still and choose a tool. Your settings can stay ready for next time.</p></div>
+      <div class="tool-list">
+        <article><span class="tool-icon purple">♪</span><div><h3>Audio</h3><p>Convert, trim and normalize common audio formats.</p></div><span class="tool-arrow">↗</span></article>
+        <article><span class="tool-icon coral">▧</span><div><h3>Images</h3><p>Resize and convert images, or turn them into a PDF.</p></div><span class="tool-arrow">↗</span></article>
+        <article><span class="tool-icon blue">▤</span><div><h3>PDF &amp; documents</h3><p>Merge, split and convert common PDF and Office files.</p></div><span class="tool-arrow">↗</span></article>
+        <article><span class="tool-icon green">⌘</span><div><h3>ZIP &amp; data</h3><p>Create or extract ZIP files, format JSON, and convert CSV.</p></div><span class="tool-arrow">↗</span></article>
+      </div>
+    </section>
+    <section class="downloads" id="downloads">
+      <div class="download-heading"><p class="section-kicker">Pick your device</p><h2>Take Still with you.</h2><p>The site is the guide. The apps do the conversion on your device.</p></div>
+      <div class="download-grid">
+        <article class="download-card"><div class="device-icon">▱</div><h3>Windows</h3><p>Full toolbox with bundled conversion tools. Unzip the download and open Start Still.</p><a data-release="Still-Toolbox-Windows-v3.zip" href="#downloads">Download for Windows <span>↓</span></a><small>Windows 10/11 · ZIP</small></article>
+        <article class="download-card"><div class="device-icon phone-icon">▯</div><h3>Android</h3><p>Standalone phone app. Save results to your phone or share them with another app.</p><a data-release="Still-Android.apk" href="#downloads">Download Android APK <span>↓</span></a><small>Android 8+ · ARM64 · 63 MB</small></article>
+      </div>
+      <p class="source-link">Want the code? <a data-release="Still-Android-Source.zip" href="#downloads">Download the Android source <span>↗</span></a>.</p>
+    </section>
+    <section class="note"><div class="note-icon">i</div><div><h2>A quick note</h2><p>This GitHub Pages site is a public product and download page. It does not convert files in your browser. Install the Windows or Android app to convert files on that device. YouTube downloads require internet access. Android Office conversion keeps basic text and tables; complex layouts may change.</p></div></section>
+  </main>
+  <footer><a class="brand" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 14v4m6-8v12m7-19v26m7-20v14m6-9v4"/></svg><span>Still</span></a><span>Less file fuss. More done.</span><a data-repo href="#top">Source &amp; releases ↗</a></footer>
+</body>
+</html>
