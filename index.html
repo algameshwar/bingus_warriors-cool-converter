@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbfbfd">
+  <meta name="description" content="bingus_warriors cool converter: compress videos and convert audio, images, PDFs and documents privately in your browser.">
+  <title>bingus_warriors cool converter — Still</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <script type="module" src="/src/app.js"></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#converter" aria-label="Still home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 14v4m6-8v12m7-19v26m7-20v14m6-9v4"/></svg><span>Still</span></a>
+    <nav aria-label="Main navigation"><a href="#converter" class="current">Converter</a><a href="#downloads">Downloads</a><a href="https://github.com/algameshwar/bingus_warriors-cool-converter">GitHub <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="converter">
+    <div class="intro"><h1>bingus_warriors cool converter</h1><p>Your everyday file toolbox. Right here in your browser.</p></div>
+    <div class="mobile-category"><label for="category-picker">Choose a tool group</label><select id="category-picker"></select></div>
+    <div class="workspace">
+      <section class="editor" aria-labelledby="tool-heading">
+        <h2 id="tool-heading">Convert a file</h2>
+        <form id="convert-form">
+          <label class="drop-zone" id="drop-zone" for="file-input">
+            <svg class="upload-icon" viewBox="0 0 40 44" fill="none" aria-hidden="true"><path d="M24 3H8a4 4 0 0 0-4 4v30a4 4 0 0 0 4 4h24a4 4 0 0 0 4-4V15L24 3Z"/><path d="M24 3v12h12M20 34V21m-6 6 6-6 6 6"/></svg>
+            <strong id="drop-title">Drop a video here</strong><span id="drop-hint">or click to browse</span>
+            <input type="file" id="file-input" accept="video/*" aria-label="Choose files">
+          </label>
+          <div class="selected-bar"><p id="selected-files">No file selected</p><button id="clear-files" type="button" hidden>Clear</button></div>
+          <div class="settings">
+            <label class="field operation"><span>Conversion type</span><select id="operation" aria-describedby="tool-note"></select></label>
+            <div id="primary-options"></div>
+          </div>
+          <div id="advanced-options"></div>
+          <p id="tool-note" class="tool-note"></p>
+          <div class="preferences"><label><input id="remember" type="checkbox" checked>Remember my settings</label><button id="reset" type="button">Reset</button></div>
+          <button class="primary" id="convert" type="submit" disabled>Compress video</button>
+          <div class="progress-wrap" id="progress-wrap" hidden><progress id="progress" max="100" value="0" aria-label="Conversion progress"></progress><button id="cancel" type="button">Cancel</button></div>
+          <p class="status" id="status" role="status" aria-live="polite">Choose a file to begin.</p>
+          <p id="error" class="error" role="alert" hidden></p>
+          <p class="privacy"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="8" width="12" height="9" rx="2"/><path d="M6.5 8V5a3.5 3.5 0 0 1 7 0v3"/></svg>Files stay in this browser</p>
+        </form>
+      </section>
+      <aside class="results" aria-labelledby="result-heading">
+        <h2 id="result-heading">Ready to save</h2>
+        <div id="preview" class="preview"><div class="empty-art" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 14v4m6-8v12m7-19v26m7-20v14m6-9v4"/></svg></div><p>Your finished file will appear here.</p></div>
+        <div id="result-row" class="result-row" hidden><div class="result-detail"><strong id="result-name"></strong><span id="result-size"></span></div><a class="save" id="save" download>Download</a></div>
+        <button class="share" id="share" type="button" hidden>Share file</button>
+        <p id="result-note" class="result-note"></p>
+      </aside>
+    </div>
+    <nav class="categories" aria-label="Tool categories" id="categories"></nav>
+    <p class="category-description" id="category-description"></p>
+    <section class="downloads" id="downloads" aria-labelledby="download-heading">
+      <div><h2 id="download-heading">Need heavier conversions?</h2><p>For large files, full Office layouts and YouTube downloads, keep Still for desktop or mobile nearby.</p></div>
+      <div class="download-actions"><a id="windows-download" class="app-download">Windows <span aria-hidden="true">↗</span><small>Get the desktop app</small></a><a id="android-download" class="app-download">Android <span aria-hidden="true">↗</span><small>Get the mobile app</small></a></div>
+    </section>
+    <p class="browser-note">Files are processed on your device. The video engine downloads once when needed (about 32 MB). Keep this tab open during conversion; very large jobs work best in the apps.</p>
+  </main>
+  <footer><span>Less file fuss. More done.</span><a href="https://github.com/algameshwar/bingus_warriors-cool-converter">Source & releases ↗</a></footer>
+</body>
+</html>

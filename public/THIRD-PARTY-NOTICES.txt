@@ -1,0 +1,48 @@
+Still browser converter: third-party components
+
+FFmpeg WebAssembly wrapper 0.12.15 and utilities 0.12.2
+MIT license
+https://github.com/ffmpegwasm/ffmpeg.wasm
+
+FFmpeg WebAssembly core 0.12.10
+GPL-2.0-or-later (as declared by the published @ffmpeg/core package)
+Source and build instructions:
+https://github.com/ffmpegwasm/ffmpeg.wasm
+Codec components and license notices:
+https://github.com/FFmpeg/FFmpeg
+https://ffmpeg.org/legal.html
+The pinned core is downloaded at runtime from jsDelivr, with unpkg as a fallback.
+This project does not remove or replace the licenses of the core or its codecs.
+
+pdf-lib 1.17.1
+MIT license
+https://github.com/Hopding/pdf-lib
+
+PDF.js 4.10.38
+Apache License 2.0
+https://github.com/mozilla/pdf.js
+The bundled PDF.js worker retains its upstream license notice.
+
+fflate 0.8.2
+MIT license
+https://github.com/101arrowz/fflate
+
+Papa Parse 5.5.3
+MIT license
+https://github.com/mholt/PapaParse
+
+jsPDF 3.0.4
+MIT license
+https://github.com/parallax/jsPDF
+Its generated bundles include dependency notices.
+
+Vite (build tool)
+MIT license
+https://github.com/vitejs/vite
+
+DM Sans and Manrope fonts
+SIL Open Font License 1.1
+https://github.com/google/fonts/tree/main/ofl/dmsans
+https://github.com/google/fonts/tree/main/ofl/manrope
+
+Pinned package versions and transitive dependencies are recorded in package-lock.json.

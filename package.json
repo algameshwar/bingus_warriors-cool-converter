@@ -1,0 +1,25 @@
+{
+  "name": "bingus-warriors-browser-converter",
+  "version": "4.0.0",
+  "private": true,
+  "type": "module",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "0.12.15",
+    "@ffmpeg/util": "0.12.2",
+    "fflate": "0.8.2",
+    "jspdf": "3.0.4",
+    "papaparse": "5.5.3",
+    "pdf-lib": "1.17.1",
+    "pdfjs-dist": "4.10.38"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1",
+    "vite": "^7.3.1"
+  }
+}

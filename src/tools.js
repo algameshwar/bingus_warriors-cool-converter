@@ -1,0 +1,49 @@
+export const groups = [
+  { id:'video', label:'Video', path:'M3 5h12v14H3zM15 10l6-4v12l-6-4', description:'Compress to a target size, convert formats, trim clips or extract audio.' },
+  { id:'audio', label:'Audio', path:'M9 18V5l11-2v13M9 7l11-2M9 18a3 3 0 1 1-3-3c2 0 3 1 3 3M20 16a3 3 0 1 1-3-3c2 0 3 1 3 3', description:'Convert audio formats, trim a track and normalize its volume.' },
+  { id:'images', label:'Images', path:'M3 3h18v18H3zM3 17l5-5 5 4 4-5 4 6M10 8h.01', description:'Convert JPG, PNG and WebP, resize photos or combine images into a PDF.' },
+  { id:'pdf', label:'PDF', path:'M5 2h9l5 5v15H5zM14 2v6h5M8 13h8M8 17h8', description:'Merge, split, extract or rotate PDF pages. Text-based PDFs can also become text or Word files.' },
+  { id:'documents', label:'Documents', path:'M4 3h13v17H4zM8 7h6M8 11h6M8 15h4M17 7h3v16H8v-3', description:'Basic text conversion for Word, PowerPoint, PDF and text files. Use the Windows app for complex Office layouts.' },
+  { id:'files', label:'ZIP & data', path:'M12 2l10 5-10 5L2 7zM2 12l10 5 10-5M2 17l10 5 10-5', description:'Create or extract ZIPs, convert spreadsheets and JSON/CSV, encode Base64 or calculate SHA-256.' },
+];
+const field=(id,label,type='number',extra={})=>({id,label,type,...extra});
+const select=(id,label,options,value)=>field(id,label,'select',{options,value});
+const trim=[field('start','Start time (seconds)','number',{value:0,min:0,step:.1}),field('end','End time (seconds, optional)','number',{value:'',min:0,step:.1})];
+const resolution=select('resolution','Maximum video height',[['auto','Automatic'],['1080','1080p'],['720','720p'],['480','480p'],['360','360p']],'auto');
+const imageOptions=[field('width','Maximum width (pixels)','number',{value:0,min:0,max:10000}),field('height','Maximum height (pixels)','number',{value:0,min:0,max:10000}),field('quality','Quality (%)','number',{value:90,min:10,max:100})];
+const pages=field('pages','Pages (for example 1-3, 5)','text',{value:'',placeholder:'Leave blank for all pages'});
+const operations=[
+ {id:'video-compress',group:'video',label:'Video compression',action:'Compress video',accept:'video/*,.mkv,.avi,.mov,.webm,.mp4',engine:'media',primary:'target',advanced:[resolution,...trim],note:'Choose a target, including 30 MB or a custom size. Still checks that the result fits; smaller targets can reduce quality.'},
+ {id:'video-convert',group:'video',label:'Convert or trim video',action:'Convert video',accept:'video/*,.mkv,.avi,.mov,.webm,.mp4',engine:'media',primary:[select('format','Output format',[['mp4','MP4'],['webm','WebM'],['mkv','MKV'],['gif','GIF (up to 30 seconds)']],'mp4')],advanced:[resolution,...trim],note:'Video runs on your device and can take longer than playback. Use the apps for large videos.'},
+ {id:'video-audio',group:'video',label:'Extract audio from video',action:'Extract audio',accept:'video/*,.mkv,.avi,.mov,.webm,.mp4',engine:'media',primary:[select('format','Audio format',[['mp3','MP3'],['m4a','M4A'],['wav','WAV'],['ogg','OGG / Vorbis'],['flac','FLAC']],'mp3')],advanced:[...trim],note:'Save the audio track from a local video. For YouTube links, use the installed apps.'},
+ {id:'audio-convert',group:'audio',label:'Convert or trim audio',action:'Convert audio',accept:'audio/*,.flac,.m4a,.opus,.ogg,.mp3,.wav',engine:'media',primary:[select('format','Output format',[['mp3','MP3'],['m4a','M4A'],['wav','WAV'],['ogg','OGG / Vorbis'],['flac','FLAC']],'mp3')],advanced:[select('bitrate','Audio bitrate',[['96','96 kbps'],['128','128 kbps'],['192','192 kbps'],['256','256 kbps'],['320','320 kbps']],'192'),field('normalize','Normalize volume','checkbox',{value:false}),...trim],note:'Choose a format. Advanced settings include trimming and volume normalization.'},
+ {id:'image-convert',group:'images',label:'Convert or resize an image',action:'Convert image',accept:'image/*',engine:'images',primary:[select('format','Output format',[['jpg','JPG'],['png','PNG'],['webp','WebP']],'jpg')],advanced:imageOptions,note:'Set maximum dimensions to resize while preserving proportions. Use 0 to keep the original dimensions. JPG uses a white background.'},
+ {id:'images-pdf',group:'images',label:'Images to PDF',action:'Create PDF',accept:'image/*',multiple:true,engine:'images',primary:[select('paper','Page size',[['a4','A4'],['fit','Fit each image']],'a4')],note:'Each selected image becomes one PDF page, in the order shown above.'},
+ {id:'pdf-merge',group:'pdf',label:'Merge PDFs',action:'Merge PDFs',accept:'.pdf,application/pdf',multiple:true,engine:'pdf',note:'Choose two or more PDFs. Files are merged in the order shown above.'},
+ {id:'pdf-split',group:'pdf',label:'Split PDF into pages',action:'Split PDF',accept:'.pdf,application/pdf',engine:'pdf',primary:[pages],note:'Download a ZIP containing one PDF for each selected page.'},
+ {id:'pdf-extract',group:'pdf',label:'Extract selected PDF pages',action:'Extract pages',accept:'.pdf,application/pdf',engine:'pdf',primary:[pages],note:'Create a new PDF containing selected pages. Leave the range blank to keep every page.'},
+ {id:'pdf-rotate',group:'pdf',label:'Rotate PDF pages',action:'Rotate pages',accept:'.pdf,application/pdf',engine:'pdf',primary:[select('angle','Rotation',[['90','90° clockwise'],['180','180°'],['270','90° counterclockwise']],'90')],advanced:[pages],note:'Rotate selected pages, or every page when the range is blank.'},
+ {id:'pdf-optimize',group:'pdf',label:'Optimize PDF structure',action:'Optimize PDF',accept:'.pdf,application/pdf',engine:'pdf',note:'Rebuild the PDF with compact object streams. Images keep their original quality; some PDFs will not get smaller.'},
+ {id:'pdf-text',group:'pdf',label:'PDF to text',action:'Extract text',accept:'.pdf,application/pdf',engine:'documents',note:'Extract selectable text. Scanned images need OCR, which is not included in this browser tool.'},
+ {id:'docx-pdf',group:'documents',label:'Word (DOCX) to PDF',action:'Create PDF',accept:'.docx',engine:'documents',note:'Creates a simple text PDF. Pictures, tables and complex Word formatting require the Windows app.'},
+ {id:'docx-text',group:'documents',label:'Word (DOCX) to text',action:'Extract text',accept:'.docx',engine:'documents',note:'Extract paragraphs from a modern Word document.'},
+ {id:'pdf-docx',group:'documents',label:'PDF to Word (DOCX)',action:'Create Word file',accept:'.pdf,application/pdf',engine:'documents',note:'Creates an editable Word document from selectable PDF text. It does not recreate the original layout or scan images.'},
+ {id:'text-pdf',group:'documents',label:'Text to PDF',action:'Create PDF',accept:'.txt,.md,text/plain,text/markdown',engine:'documents',note:'Creates a simple text PDF with automatic page breaks.'},
+ {id:'text-docx',group:'documents',label:'Text to Word (DOCX)',action:'Create Word file',accept:'.txt,.md,text/plain,text/markdown',engine:'documents',note:'Creates an editable Word document from plain text.'},
+ {id:'pptx-text',group:'documents',label:'PowerPoint (PPTX) to text',action:'Extract text',accept:'.pptx',engine:'documents',note:'Extracts slide text in slide order. Artwork, animations and presenter notes are not included.'},
+ {id:'pptx-pdf',group:'documents',label:'PowerPoint (PPTX) to PDF',action:'Create PDF',accept:'.pptx',engine:'documents',note:'Creates one simple text page per slide. Use the Windows app to preserve slide artwork.'},
+ {id:'zip-create',group:'files',label:'Create ZIP',action:'Create ZIP',accept:'*',multiple:true,engine:'files',note:'Choose any files to pack into a ZIP. File contents are preserved, including binary files.'},
+ {id:'zip-extract',group:'files',label:'Extract ZIP',action:'Extract ZIP',accept:'.zip,application/zip',engine:'files',note:'Open a ZIP and download its files individually. Extraction is limited to 200 files and 100 MB of expanded content.'},
+ {id:'json-pretty',group:'files',label:'Format JSON',action:'Format JSON',accept:'.json,application/json',engine:'files',note:'Validate and indent a JSON document.'},
+ {id:'json-minify',group:'files',label:'Minify JSON',action:'Minify JSON',accept:'.json,application/json',engine:'files',note:'Remove optional spaces and line breaks from valid JSON.'},
+ {id:'csv-json',group:'files',label:'CSV to JSON',action:'Convert CSV',accept:'.csv,text/csv',engine:'files',note:'The first row supplies field names. Quoted commas and multiline fields are supported.'},
+ {id:'json-csv',group:'files',label:'JSON to CSV',action:'Convert JSON',accept:'.json,application/json',engine:'files',note:'Use a JSON array of objects. Nested values are written as JSON text.'},
+ {id:'csv-xlsx',group:'files',label:'CSV to Excel (XLSX)',action:'Create spreadsheet',accept:'.csv,text/csv',engine:'documents',note:'Create a basic spreadsheet from CSV values. Formula-looking text remains text.'},
+ {id:'xlsx-csv',group:'files',label:'Excel (XLSX) to CSV',action:'Convert spreadsheet',accept:'.xlsx',engine:'documents',note:'Exports values from the first worksheet. Formulas use saved results and are not recalculated.'},
+ {id:'xlsx-json',group:'files',label:'Excel (XLSX) to JSON',action:'Convert spreadsheet',accept:'.xlsx',engine:'documents',note:'Exports first-sheet values with the first row as field names.'},
+ {id:'base64-encode',group:'files',label:'Encode file as Base64',action:'Encode file',accept:'*',engine:'files',note:'Encode any file into a Base64 text file.'},
+ {id:'base64-decode',group:'files',label:'Decode Base64',action:'Decode file',accept:'.txt,.base64,text/plain',engine:'files',note:'Decode Base64 text or a data URL into a binary file.'},
+ {id:'sha256',group:'files',label:'SHA-256 checksum',action:'Calculate checksum',accept:'*',engine:'files',note:'Calculate a SHA-256 fingerprint without uploading your file.'},
+];
+export const tools=Object.fromEntries(operations.map(t=>[t.id,t]));
+export const groupTools=id=>operations.filter(t=>t.group===id);
